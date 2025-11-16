@@ -23,7 +23,12 @@ class Person {
 	}
 }
 
-type TItem = Array<{ title: string; rating: number }>;
-const filterByRating = (items: TItem): TItem => {
+type TItems = Array<{ title: string; rating: number }>;
+const filterByRating = (items: TItems): TItems => {
 	return items.filter((item) => item.rating >= 4.0);
+};
+
+type TUsers = Array<{ id: number; name: string; email: string; isActive: boolean }>;
+const filterActiveUsers = (users: TUsers): TUsers => {
+	return users.filter((user) => user.isActive);
 };
