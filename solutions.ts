@@ -23,12 +23,28 @@ class Person {
 	}
 }
 
-type TItems = Array<{ title: string; rating: number }>;
-const filterByRating = (items: TItems): TItems => {
+type Items = Array<{ title: string; rating: number }>;
+const filterByRating = (items: Items): Items => {
 	return items.filter((item) => item.rating >= 4.0);
 };
 
-type TUsers = Array<{ id: number; name: string; email: string; isActive: boolean }>;
-const filterActiveUsers = (users: TUsers): TUsers => {
+type Users = Array<{ id: number; name: string; email: string; isActive: boolean }>;
+const filterActiveUsers = (users: Users): Users => {
 	return users.filter((user) => user.isActive);
+};
+
+interface Book {
+	title: string;
+	author: string;
+	publishedYear: number;
+	isAvailable: boolean;
+}
+
+const printBookDetails = (book: Book): void => {
+	const { title, author, publishedYear, isAvailable } = book;
+	console.log(
+		`Title: ${title}, Author: ${author}, Published: ${publishedYear}, Available: ${
+			isAvailable ? "Yes" : "No"
+		}`,
+	);
 };
