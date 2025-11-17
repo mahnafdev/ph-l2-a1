@@ -24,8 +24,9 @@ class Person {
 }
 
 type Items = Array<{ title: string; rating: number }>;
-const filterByRating = (items: Items): Items => {
-	return items.filter((item) => item.rating >= 4.0);
+const filterByRating = (items: Items): Items | undefined => {
+	if (items.every((item) => item.rating >= 0.0 && item.rating <= 5.0))
+		return items.filter((item) => item.rating >= 4.0);
 };
 
 type Users = Array<{ id: number; name: string; email: string; isActive: boolean }>;
@@ -47,4 +48,17 @@ const printBookDetails = (book: Book): void => {
 			isAvailable ? "Yes" : "No"
 		}`,
 	);
+};
+
+type Products = Array<{ name: string; price: number; quantity: number; discount?: number }>;
+const calculateTotalPrice = (products: Products): number => {
+	const totalPrice = products.reduce((totalPrice, product) => {
+		const { price, quantity, discount } = product;
+		const summedPrice = price * quantity;
+		const discountedPrice = discount
+			? summedPrice - (summedPrice * discount) / 100
+			: summedPrice;
+		return totalPrice + discountedPrice;
+	}, 0);
+	return totalPrice;
 };
