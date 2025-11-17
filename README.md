@@ -4,11 +4,11 @@
 
 1. **What are some differences between interfaces and types in TypeScript?**
 
-    **Answer:** Interfaces are mainly used for perfecting objects and they can be extended with the `extends` keyword. Types are more flexible in case of types because they can apply primitive, non-primitive, nullish, union, intersection, so on and so forth. Interfaces combine with each other when declared multiple times in the same scope, while types can't do that. Types are like general-purpose type alias and interfaces are like structured blueprints.
+    **Answer:** ইন্টারফেস সাধারণত অবজেক্টকে নিখুঁতভাবে নির্ধারণ করার জন্য ব্যবহার করা হয় এবং এগুলোকে `extends` কীওয়ার্ড দিয়ে উত্তরাধিকরণ করা যায়। টাইপ তুলনামূলকভাবে বেশি নমনীয়, কারণ এতে প্রিমিটিভ, নন-প্রিমিটিভ, নালিশ, ইউনিয়ন, ইন্টারসেকশন ইত্যাদি বিভিন্ন ধরনের মান নির্ধারণ করা যায়। একটা ইন্টারফেস একই স্কোপে একাধিকবার ডিক্লেয়ার করলে ইন্টারফেসগুলো নিজেদের মধ্যে সংযুক্ত হয়ে যায়, কিন্তু টাইপের ক্ষেত্রে এটা সম্ভব নয়। টাইপ হলো একটি সাধারণ উদ্দেশ্যে ব্যবহারের জন্য টাইপ অ্যালিয়াস আর ইন্টারফেস হলো একটি কাঠামোবদ্ধিত নীলনকশার মতো।
 
 2. **Provide an example of using union and intersection types in TypeScript.**
 
-    **Answer:** A union type is like the OR (`||`) operator, it lets a value be one type or another. While an intersection is like the AND (`&&`) operator, it combines multiple types into one. Here's an example:
+    **Answer:** ইউনিয়ন টাইপ হলো OR (`||`) অপারেটরের মতো, যেখানে একটি মান একাধিক টাইপের মধ্যে যেকোনো একটি টাইপের হতে পারে। আর ইন্টারসেকশন হলো AND (`&&`) অপারেটরের মতো, যেখানে একাধিক টাইপকে একত্রে মিলিয়ে একটি টাইপ তৈরি করা হয়। একটি উদাহরণ দেওয়া হলো:
 
     ```typescript
     type A = { id: number };
