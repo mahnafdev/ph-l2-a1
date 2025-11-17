@@ -50,6 +50,26 @@ const printBookDetails = (book: Book): void => {
 	);
 };
 
+type TArray = Array<string | number>;
+const getUniqueValues = (arrA: TArray, arrB: TArray): TArray => {
+	const uniqueArr: TArray = [];
+	for (let i = 0; i < arrA.length; i++) {
+		let isUnique = true;
+		for (let j = 0; j < uniqueArr.length; j++) {
+			if (arrA[i] === uniqueArr[j]) isUnique = false;
+		}
+		if (isUnique) uniqueArr.push(arrA[i]!);
+	}
+	for (let i = 0; i < arrB.length; i++) {
+		let isUnique = true;
+		for (let j = 0; j < uniqueArr.length; j++) {
+			if (arrB[i] === uniqueArr[j]) isUnique = false;
+		}
+		if (isUnique) uniqueArr.push(arrB[i]!);
+	}
+	return uniqueArr;
+};
+
 type Products = Array<{ name: string; price: number; quantity: number; discount?: number }>;
 const calculateTotalPrice = (products: Products): number => {
 	const totalPrice = products.reduce((totalPrice, product) => {
