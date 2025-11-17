@@ -28,6 +28,11 @@ const filterByRating = (items: Items): Items | undefined => {
 	if (items.every((item) => item.rating >= 0.0 && item.rating <= 5.0))
 		return items.filter((item) => item.rating >= 4.0);
 };
+const products: Items = [
+	{ title: "Pen", rating: 4.4 },
+	{ title: "Notebook", rating: 5 },
+	{ title: "Bag", rating: 3.5 },
+];
 
 type Users = Array<{ id: number; name: string; email: string; isActive: boolean }>;
 const filterActiveUsers = (users: Users): Users => {
@@ -41,31 +46,42 @@ interface Book {
 	isAvailable: boolean;
 }
 
-const printBookDetails = (book: Book): void => {
+const printBookDetails = (book: Book): string => {
 	const { title, author, publishedYear, isAvailable } = book;
-	console.log(
-		`Title: ${title}, Author: ${author}, Published: ${publishedYear}, Available: ${
-			isAvailable ? "Yes" : "No"
-		}`,
-	);
+	return `Title: ${title}, Author: ${author}, Published: ${publishedYear}, Available: ${
+		isAvailable ? "Yes" : "No"
+	}`;
 };
 
 type TArray = Array<string | number>;
 const getUniqueValues = (arrA: TArray, arrB: TArray): TArray => {
 	const uniqueArr: TArray = [];
+	let uniqueArrIdx = 0;
 	for (let i = 0; i < arrA.length; i++) {
 		let isUnique = true;
 		for (let j = 0; j < uniqueArr.length; j++) {
-			if (arrA[i] === uniqueArr[j]) isUnique = false;
+			if (arrA[i] === uniqueArr[j]) {
+				isUnique = false;
+				break;
+			}
 		}
-		if (isUnique) uniqueArr.push(arrA[i]!);
+		if (isUnique) {
+			uniqueArr[uniqueArrIdx] = arrA[i]!;
+			uniqueArrIdx++;
+		}
 	}
 	for (let i = 0; i < arrB.length; i++) {
 		let isUnique = true;
 		for (let j = 0; j < uniqueArr.length; j++) {
-			if (arrB[i] === uniqueArr[j]) isUnique = false;
+			if (arrB[i] === uniqueArr[j]) {
+				isUnique = false;
+				break;
+			}
 		}
-		if (isUnique) uniqueArr.push(arrB[i]!);
+		if (isUnique) {
+			uniqueArr[uniqueArrIdx] = arrB[i]!;
+			uniqueArrIdx++;
+		}
 	}
 	return uniqueArr;
 };
