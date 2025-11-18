@@ -27,12 +27,8 @@ type Items = Array<{ title: string; rating: number }>;
 const filterByRating = (items: Items): Items | undefined => {
 	if (items.every((item) => item.rating >= 0.0 && item.rating <= 5.0))
 		return items.filter((item) => item.rating >= 4.0);
+	else return [];
 };
-const products: Items = [
-	{ title: "Pen", rating: 4.4 },
-	{ title: "Notebook", rating: 5 },
-	{ title: "Bag", rating: 3.5 },
-];
 
 type Users = Array<{ id: number; name: string; email: string; isActive: boolean }>;
 const filterActiveUsers = (users: Users): Users => {
@@ -88,13 +84,19 @@ const getUniqueValues = (arrA: TArray, arrB: TArray): TArray => {
 
 type Products = Array<{ name: string; price: number; quantity: number; discount?: number }>;
 const calculateTotalPrice = (products: Products): number => {
+	let isDiscountsInRange = true;
 	const totalPrice = products.reduce((totalPrice, product) => {
 		const { price, quantity, discount } = product;
 		const summedPrice = price * quantity;
-		const discountedPrice = discount
-			? summedPrice - (summedPrice * discount) / 100
-			: summedPrice;
-		return totalPrice + discountedPrice;
+		if (discount) {
+			if (discount >= 0 && discount <= 100) {
+				const discountedPrice = discount
+					? summedPrice - (summedPrice * discount) / 100
+					: summedPrice;
+				return totalPrice + discountedPrice;
+			} else isDiscountsInRange = false;
+		}
+		return totalPrice + summedPrice;
 	}, 0);
-	return totalPrice;
+	return isDiscountsInRange ? totalPrice : 0;
 };
